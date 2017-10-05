@@ -63,9 +63,9 @@ void removeAll(Box *&list, int x) {
     Box *curr = list;
     Box *last = nullptr;
 
-    while(curr != nullptr) {
-        if(curr->value == x) {
-            if(last != nullptr) {
+    while (curr != nullptr) {
+        if (curr->value == x) {
+            if (last != nullptr) {
                 last->next = curr->next;
                 delete curr;
             } else {
@@ -96,10 +96,10 @@ void testRemoveAll() {
  * 4. Append
  */
 
-void append(Box *&start, Box* tail) {
+void append(Box *&start, Box *tail) {
     Box *iter = start;
 
-    while(iter->next != nullptr) {
+    while (iter->next != nullptr) {
         iter = iter->next;
     }
 
@@ -129,14 +129,14 @@ Box *concat(Box *first, Box *second) {
 
     first = first->next;
 
-    while(first != nullptr) {
+    while (first != nullptr) {
         copiedCurr->next = new Box(first->value, nullptr);
 
         copiedCurr = copiedCurr->next;
         first = first->next;
     }
 
-    while(second != nullptr) {
+    while (second != nullptr) {
         copiedCurr->next = new Box(second->value, nullptr);
 
         copiedCurr = copiedCurr->next;
@@ -151,7 +151,7 @@ void testConcat() {
     Box *start = new Box(1, new Box(5, new Box(42, nullptr)));
     Box *end = new Box(-1, new Box(-5, new Box(-42, nullptr)));
 
-    Box * result = concat(start, end);
+    Box *result = concat(start, end);
 
     while (result != nullptr) {
         std::cout << result->value << ", ";
@@ -167,14 +167,14 @@ void testConcat() {
 void map(Box *&list, int (*func)(int)) {
     Box *iter = list;
 
-    while(iter != nullptr) {
+    while (iter != nullptr) {
         iter->value = func(iter->value);
         iter = iter->next;
     }
 }
 
 int square(int x) {
-    return x*x;
+    return x * x;
 }
 
 void testMap() {
@@ -197,7 +197,7 @@ void testMap() {
 Box *reverse(Box *list) {
     Box *reversed = nullptr;
 
-    while(list != nullptr) {
+    while (list != nullptr) {
         reversed = new Box(list->value, reversed);
         list = list->next;
     }
@@ -208,13 +208,146 @@ Box *reverse(Box *list) {
 void testReverse() {
     Box *orig = new Box(1, new Box(5, new Box(42, nullptr)));
 
-    Box * reversed = reverse(orig);
+    Box *reversed = reverse(orig);
 
     while (reversed != nullptr) {
         std::cout << reversed->value << ", ";
 
         reversed = reversed->next;
     }
+}
+
+/**
+ * 8. Duplicates
+ */
+
+bool duplicates(Box *list) {
+    while (list != nullptr) {
+        Box *iter = list->next;
+        while (iter != nullptr) {
+            if (iter->value == list->value) {
+                return true;
+            }
+
+            iter = iter->next;
+        }
+
+        list = list->next;
+    }
+
+
+    return false;
+}
+
+void testDuplicates() {
+    Box *unique = new Box(1, new Box(5, new Box(42, nullptr)));
+    Box *dupl = new Box(11, new Box(5, new Box(11, nullptr)));
+
+    std::cout << duplicates(unique) << " = false" << std::endl;
+    std::cout << duplicates(dupl) << " = true" << std::endl;
+}
+
+/**
+ * 9. Remove Duplicates
+ */
+
+void removeDuplicates(Box *&list) {
+    Box *orig = list;
+    while (orig != nullptr) {
+        Box *current = orig->next;
+        Box *last = orig;
+
+        while (current != nullptr) {
+            if (current->value == orig->value) {
+                last->next = current->next;
+                delete current;
+            }
+
+            last = current;
+            current = current->next;
+        }
+
+        orig = orig->next;
+    }
+}
+
+void testRemoveDupl() {
+    Box *dupl = new Box(11, new Box(5, new Box(11, nullptr)));
+
+    removeDuplicates(dupl);
+
+    while (dupl != nullptr) {
+        std::cout << dupl->value << ", ";
+
+        dupl = dupl->next;
+    }
+}
+
+/**
+ * 10. Is Sorted?
+ */
+
+bool isSorted(Box *list) {
+    bool isAsc;
+    int last = NULL;
+    Box *iter = list;
+
+    while(iter != nullptr) {
+        if(last == NULL) {
+            isAsc = iter->value < iter->next->value;
+        } else if(iter->value < last) {
+            if(isAsc) {
+                return false;
+            }
+        } else if(iter->value > last) {
+            if(!isAsc) {
+                return false;
+            }
+        }
+
+        last = iter->value;
+        iter = iter->next;
+    }
+
+    return true;
+}
+
+void testIsSorted() {
+    Box *asc = new Box(1, new Box(5, new Box(42, nullptr)));
+    Box *desc = new Box(33, new Box(22, new Box(11, nullptr)));
+    Box *no = new Box(3, new Box(22, new Box(11, nullptr)));
+
+    std::cout << isSorted(asc) << " = true" << std::endl;
+    std::cout << isSorted(desc) << " = true" << std::endl;
+    std::cout << isSorted(no) << " = false" << std::endl;
+}
+
+/**
+ * 11. Palindrome
+ */
+
+bool palindrome(Box *list) {
+    Box *reversed = reverse(list);
+
+    while(list != nullptr) {
+        if(list->value != reversed->value) {
+            return false;
+        }
+
+        list = list->next;
+        reversed = reversed->next;
+    }
+
+    return true;
+}
+
+void testPalindrome() {
+    Box *yes = new Box(33, new Box(22, new Box(11, new Box(22, new Box(33, nullptr)))));
+    Box *no = new Box(3, new Box(22, new Box(11, nullptr)));
+
+
+    std::cout << palindrome(yes) << " = true" << std::endl;
+    std::cout << palindrome(no) << " = false" << std::endl;
 }
 
 int main() {
@@ -224,6 +357,10 @@ int main() {
 //    testAppend();
 //    testConcat();
 //    testMap();
-    testReverse();
+//    testReverse();
+//    testDuplicates();
+//    testRemoveDupl();
+//    testIsSorted();
+    testPalindrome();
     return 0;
 }
