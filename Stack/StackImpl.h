@@ -12,6 +12,16 @@ template <typename T>
 struct Element {
     T data;
     Element *next;
+
+    Element(): data(T()), next(nullptr) {}
+
+    void destroy() {
+        if(next != nullptr) {
+            next->destroy();
+        }
+
+        delete next;
+    }
 };
 
 template <typename T>
@@ -20,14 +30,30 @@ class StackImpl : public Stack<T> {
 
 public:
 
+    StackImpl(): head(nullptr) {}
+    ~StackImpl() {
+        if(!isEmpty()) {
+            head->destroy();
+            delete head;
+        }
+    }
+
     const T &pop() override {
-        Element<T> *removed = head;
-        head = head->next;
-        return removed->data;
+        if(!isEmpty()) {
+            Element<T> *removed = head;
+            head = head->next;
+            return removed->data;
+        }
+
+        throw std::logic_error("Stack is empty");
     }
 
     const T &peek() const override {
-        return head->data;
+        if(!isEmpty()) {
+            return head->data;
+        }
+
+        throw std::logic_error("Stack is empty");
     }
 
     void push(const T &data) override {
@@ -37,6 +63,9 @@ public:
         head = newElem;
     }
 
+    bool isEmpty() const override {
+        return head == NULL;
+    }
 };
 
 
