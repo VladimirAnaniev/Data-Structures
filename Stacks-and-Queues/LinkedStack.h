@@ -37,7 +37,7 @@ public:
         return data;
     }
 
-    const T &peek() const override {
+    const T &peek() override {
         if(!isEmpty()) {
             throw std::logic_error("Stack is empty");
         }

@@ -8,9 +8,9 @@
 template <typename T>
 class Queue {
 public:
-    virtual T remove() = 0;
-    virtual const T &peek() const = 0;
-    virtual void add(const T &data) = 0;
+    virtual T dequeue() = 0;
+    virtual const T &peek() = 0;
+    virtual void enqueue(const T &data) = 0;
     virtual bool isEmpty() const = 0;
 };
 

@@ -9,7 +9,7 @@ template <typename T>
 class Stack {
 public:
     virtual T pop() = 0;
-    virtual const T &peek() const = 0;
+    virtual const T &peek() = 0;
     virtual void push(const T &data) = 0;
     virtual bool isEmpty() const = 0;
 };

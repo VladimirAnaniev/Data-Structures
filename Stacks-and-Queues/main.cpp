@@ -1,6 +1,8 @@
 #include <iostream>
 #include "LinkedStack.h"
 #include "LinkedQueue.h"
+#include "StackedQueue.h"
+#include "QueuedStack.h"
 
 void testPop() {
     LinkedStack<int> stack;
@@ -17,35 +19,37 @@ void testPop() {
 }
 
 void testPush() {
-    LinkedStack<int> stack;
+    QueuedStack<int> stack;
 
-    for (int i = 0; i <= 100000; i++) {
+    for (int i = 0; i <= 100; i++) {
         stack.push(i);
     }
 
-    std::cout << stack.pop() << " = 100000" << std::endl;
+    while (!stack.isEmpty()) {
+        std::cout << stack.pop() << ", ";
+    }
 }
 
 void testStack() {
-    std::cout<<"************TESTING STACK*************"<<std::endl;
+    std::cout << "************TESTING STACK*************" << std::endl;
     testPop();
     testPush();
 }
 
 void testQueue() {
-    std::cout<<"************TESTING QUEUE*************"<<std::endl;
-    LinkedQueue<int> queue;
+    std::cout << "************TESTING QUEUE*************" << std::endl;
+    StackedQueue<int> queue;
 
-    queue.add(5);
-    queue.add(42);
+    queue.enqueue(5);
+    queue.enqueue(42);
 
     while (!queue.isEmpty()) {
-        std::cout << queue.remove() << std::endl;
+        std::cout << queue.dequeue() << std::endl;
     }
 }
 
 int main() {
     testStack();
-    testQueue();
+//    testQueue();
     return 0;
 }

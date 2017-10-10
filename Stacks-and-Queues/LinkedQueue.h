@@ -23,11 +23,10 @@ public:
         }
     }
 
-    T remove() override {
+    T dequeue() override {
         if(isEmpty()) {
             throw std::logic_error("Queue is empty");
         }
-
 
         LinkedNode<T> *removed = first;
         first = first->next;
@@ -38,7 +37,7 @@ public:
         return data;
     }
 
-    const T &peek() const override {
+    const T &peek() override {
         if(isEmpty()) {
             throw std::logic_error("Queue is empty");
         }
@@ -46,7 +45,7 @@ public:
         return first->data;
     }
 
-    void add(const T &data) override {
+    void enqueue(const T &data) override {
         auto *newElem = new LinkedNode<T>();
         newElem->data = data;
         newElem->next = nullptr;
