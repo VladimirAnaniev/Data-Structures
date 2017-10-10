@@ -1,28 +1,28 @@
 #include <iostream>
-#include "StackImpl.h"
+#include "LinkedStack.h"
 
 void testInception() {
-    StackImpl<int> inner;
+    LinkedStack<int> inner;
     inner.push(5);
     inner.push(42);
 
-    StackImpl<StackImpl<int>> stack;
-    stack.push(StackImpl<int>());
+    LinkedStack<LinkedStack<int>> stack;
+    stack.push(LinkedStack<int>());
     stack.push(inner);
 
-    StackImpl<StackImpl<StackImpl<int>>> outer; // Meta
-    outer.push(StackImpl<StackImpl<int>>());
+    LinkedStack<LinkedStack<LinkedStack<int>>> outer; // Meta
+    outer.push(LinkedStack<LinkedStack<int>>());
     outer.push(stack);
 
-    StackImpl<StackImpl<int>> fromOuter = outer.pop();
-    StackImpl<int> fromFromOuter = fromOuter.pop();
+    LinkedStack<LinkedStack<int>> fromOuter = outer.pop();
+    LinkedStack<int> fromFromOuter = fromOuter.pop();
 
     std::cout << fromFromOuter.pop() << " = 42" << std::endl;
     std::cout << fromFromOuter.pop() << " = 5" << std::endl;
 }
 
 void testPop() {
-    StackImpl<int> stack;
+    LinkedStack<int> stack;
     stack.push(2);
 
     try {
@@ -36,7 +36,7 @@ void testPop() {
 }
 
 void testPush() {
-    StackImpl<int> stack;
+    LinkedStack<int> stack;
 
     for (int i = 0; i <= 100000; i++) {
         stack.push(i);

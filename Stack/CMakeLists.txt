@@ -3,5 +3,5 @@ project(Stack)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Stack.h StackImpl.h)
+set(SOURCE_FILES main.cpp Stack.h LinkedStack.h)
 add_executable(Stack ${SOURCE_FILES})

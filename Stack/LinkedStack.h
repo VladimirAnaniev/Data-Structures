@@ -25,13 +25,13 @@ struct Element {
 };
 
 template <typename T>
-class StackImpl : public Stack<T> {
+class LinkedStack : public Stack<T> {
     Element<T> *head;
 
 public:
 
-    StackImpl(): head(nullptr) {}
-    ~StackImpl() {
+    LinkedStack(): head(nullptr) {}
+    ~LinkedStack() {
         if(!isEmpty()) {
             head->destroy();
             delete head;
@@ -39,21 +39,21 @@ public:
     }
 
     const T &pop() override {
-        if(!isEmpty()) {
-            Element<T> *removed = head;
-            head = head->next;
-            return removed->data;
+        if(isEmpty()) {
+            throw std::logic_error("Stack is empty");
         }
 
-        throw std::logic_error("Stack is empty");
+        Element<T> *removed = head;
+        head = head->next;
+        return removed->data;
     }
 
     const T &peek() const override {
         if(!isEmpty()) {
-            return head->data;
+            throw std::logic_error("Stack is empty");
         }
 
-        throw std::logic_error("Stack is empty");
+        return head->data;
     }
 
     void push(const T &data) override {
