@@ -7,26 +7,11 @@
 
 
 #include "Stack.h"
-
-template <typename T>
-struct Element {
-    T data;
-    Element *next;
-
-    Element(): data(T()), next(nullptr) {}
-
-    void destroy() {
-        if(next != nullptr) {
-            next->destroy();
-        }
-
-        delete next;
-    }
-};
+#include "LinkedNode.h"
 
 template <typename T>
 class LinkedStack : public Stack<T> {
-    Element<T> *head;
+    LinkedNode<T> *head;
 
 public:
 
@@ -38,14 +23,18 @@ public:
         }
     }
 
-    const T &pop() override {
+    T pop() override {
         if(isEmpty()) {
             throw std::logic_error("Stack is empty");
         }
 
-        Element<T> *removed = head;
+        LinkedNode<T> *removed = head;
         head = head->next;
-        return removed->data;
+
+        T data = removed->data;
+        delete removed;
+
+        return data;
     }
 
     const T &peek() const override {
@@ -57,14 +46,14 @@ public:
     }
 
     void push(const T &data) override {
-        auto *newElem = new Element<T>();
+        auto *newElem = new LinkedNode<T>();
         newElem->data = data;
         newElem->next = head;
         head = newElem;
     }
 
     bool isEmpty() const override {
-        return head == NULL;
+        return head == nullptr;
     }
 };
 
