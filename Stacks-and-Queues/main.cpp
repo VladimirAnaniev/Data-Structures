@@ -3,6 +3,7 @@
 #include "Queue/LinkedQueue.h"
 #include "Stack/StackedQueue.h"
 #include "Queue/QueuedStack.h"
+#include "Stack/sortStack.cpp"
 
 void testPop() {
     LinkedStack<int> stack;
@@ -48,8 +49,10 @@ void testQueue() {
     }
 }
 
+
 int main() {
-    testStack();
+//    testStack();
 //    testQueue();
+    testSortStack();
     return 0;
 }
