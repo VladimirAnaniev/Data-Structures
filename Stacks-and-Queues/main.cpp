@@ -1,8 +1,8 @@
 #include <iostream>
-#include "LinkedStack.h"
-#include "LinkedQueue.h"
-#include "StackedQueue.h"
-#include "QueuedStack.h"
+#include "Stack/LinkedStack.h"
+#include "Queue/LinkedQueue.h"
+#include "Stack/StackedQueue.h"
+#include "Queue/QueuedStack.h"
 
 void testPop() {
     LinkedStack<int> stack;

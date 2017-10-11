@@ -7,7 +7,7 @@
 
 
 #include "Stack.h"
-#include "LinkedNode.h"
+#include "../LinkedNode.h"
 
 template <typename T>
 class LinkedStack : public Stack<T> {

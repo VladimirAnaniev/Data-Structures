@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 #include "Queue.h"
-#include "LinkedNode.h"
+#include "../LinkedNode.h"
 
 template <typename T>
 class LinkedQueue : public Queue<T> {

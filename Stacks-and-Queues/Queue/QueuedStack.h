@@ -5,7 +5,7 @@
 #ifndef STACKS_AND_QUEUES_QUEUEDSTACK_H
 #define STACKS_AND_QUEUES_QUEUEDSTACK_H
 
-#include "Stack.h"
+#include "../Stack/Stack.h"
 #include "LinkedQueue.h"
 
 template<typename T>

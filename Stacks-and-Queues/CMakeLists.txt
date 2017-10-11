@@ -3,5 +3,5 @@ project(Stacks-and-Queues)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Stack.h LinkedStack.h Queue.h LinkedQueue.h LinkedNode.h StackedQueue.h QueuedStack.h)
+set(SOURCE_FILES main.cpp Stack/Stack.h Stack/LinkedStack.h Queue/Queue.h Queue/LinkedQueue.h LinkedNode.h Stack/StackedQueue.h Queue/QueuedStack.h)
 add_executable(Stacks-and-Queues ${SOURCE_FILES})

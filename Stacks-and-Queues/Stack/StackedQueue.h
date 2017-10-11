@@ -6,7 +6,7 @@
 #define STACKS_AND_QUEUES_STACKEDQUEUE_H
 
 #include <stdexcept>
-#include "Queue.h"
+#include "../Queue/Queue.h"
 #include "LinkedStack.h"
 
 template <typename T>
