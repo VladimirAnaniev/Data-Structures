@@ -5,7 +5,7 @@
 #include <iostream>
 #include "../LinkedStack.h"
 
-void pushSorted(LinkedStack<int> &stack, int elem) {
+void pushSorted(Stack<int> &stack, int elem) {
     LinkedStack<int> temp;
 
     while(!stack.isEmpty() && stack.peek() < elem) {
@@ -19,7 +19,7 @@ void pushSorted(LinkedStack<int> &stack, int elem) {
     }
 }
 
-void pushSortedRec(LinkedStack<int> &stack, int num) {
+void pushSortedRec(Stack<int> &stack, int num) {
     if(stack.isEmpty() || stack.peek() >= num) {
         stack.push(num);
         return;
@@ -32,7 +32,7 @@ void pushSortedRec(LinkedStack<int> &stack, int num) {
     stack.push(top);
 }
 
-void sortStack(LinkedStack<int> &stack) {
+void sortStack(Stack<int> &stack) {
     if(stack.isEmpty()) {
         return;
     }
