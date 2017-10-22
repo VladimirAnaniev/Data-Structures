@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "LinkedStack.h"
+#include "../LinkedStack.h"
 
 void pushSorted(LinkedStack<int> &stack, int elem) {
     LinkedStack<int> temp;
