@@ -11,6 +11,7 @@
 
 template <typename T>
 class LinkedQueue : public Queue<T> {
+protected:
     LinkedNode<T> *first;
     LinkedNode<T> *last;
 
