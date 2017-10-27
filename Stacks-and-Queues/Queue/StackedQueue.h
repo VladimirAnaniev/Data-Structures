@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 #include "../Queue/Queue.h"
-#include "LinkedStack.h"
+#include "../Stack/LinkedStack.h"
 
 template <typename T>
 class StackedQueue : Queue<T> {
