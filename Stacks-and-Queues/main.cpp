@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Stack/Problems/Decompressor.h"
 #include "Queue/Problems/Sequence.h"
+#include "Queue/Problems/ArrayIntervals.h"
 
 
 int main() {
-    Sequence seq(10);
-    std::cout<<seq.getElement(5);
+    ArrayIntervals intervals(new int[5] {10, 5, 3,0,800}, 5);
+    intervals.printIntervals(5, 22);
     return 0;
 }
